@@ -1,0 +1,107 @@
+﻿@model mohua_web_.Entities.Info
+
+@{
+    ViewBag.Title = "Dashboard";
+    ViewData["Title"] = "Dashboard";
+    ViewData["Head"] = "Test";
+    Layout = "~/Views/Shared/_Layout_adminlte.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link href="~/css/site.css" rel="stylesheet" />
+    
+   
+</head>
+<body>
+    <!-- Content Header -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    @* <h1>@ViewBag.PageName</h1>  *@
+                    <h1>  PMSVANIDHI Dashboard</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="#">
+                                Missions Wise Dashboard
+                            </a> | PMSVANIDHI
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content">
+        <div class="container-fluid">
+           
+       
+
+            <!-- Tableau Embedding 3 -->
+            <div class="tableauPlaceholder" id="viz1732527966223">
+                <noscript>
+                    <a href="#">
+                        <img alt="Dashboard 1" src="https://public.tableau.com/static/images/PM/PMSvanidhiDashboard/Dashboard1/1_rss.png" style="border: none" />
+                    </a>
+                </noscript>
+                <object class="tableauViz">
+                    <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                    <param name="embed_code_version" value="3" />
+                    <param name="site_root" value="" />
+                    <param name="name" value="PMSvanidhiDashboard/Dashboard1" />
+                    <param name="tabs" value="no" />
+                    <param name="toolbar" value="yes" />
+                    <param name="static_image" value="https://public.tableau.com/static/images/PM/PMSvanidhiDashboard/Dashboard1/1.png" />
+                    <param name="animate_transition" value="yes" />
+                    <param name="display_static_image" value="yes" />
+                    <param name="display_spinner" value="yes" />
+                    <param name="display_overlay" value="yes" />
+                    <param name="display_count" value="yes" />
+                    <param name="language" value="en-US" />
+                </object>
+            </div>
+        </div>
+    </section>
+
+    @* <script type="text/javascript"> *@
+
+
+    @*     // Tableau Embedding 3 *@
+    @*     document.addEventListener('DOMContentLoaded', function () { *@
+    @*         var divElement3 = document.getElementById('viz1732527966223'); *@
+    @*         var vizElement3 = divElement3.getElementsByTagName('object')[0]; *@
+    @*         if (divElement3.offsetWidth > 800) { *@
+    @*             vizElement3.style.width = '1600px'; *@
+    @*             vizElement3.style.height = '827px'; *@
+    @*         } else if (divElement3.offsetWidth > 500) { *@
+    @*             vizElement3.style.width = '1600px'; *@
+    @*             vizElement3.style.height = '827px'; *@
+    @*         } else { *@
+    @*             vizElement3.style.width = '100%'; *@
+    @*             vizElement3.style.height = '2827px'; *@
+    @*         } *@
+    @*         var scriptElement3 = document.createElement('script'); *@
+    @*         scriptElement3.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; *@
+    @*         vizElement3.parentNode.insertBefore(scriptElement3, vizElement3); *@
+    @*     }); *@
+    @* </script> *@
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            document.getElementsByTagName('head')[0].appendChild(scriptElement);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿ @model IEnumerable<mohua_web_.Entities.TblNulmApiSepgroup>
+
+
+
+<table id="example1" class="table align-items-center mb-0" style="overflow-x: auto; display: block; white-space: nowrap;">
+    <thead>
+        <tr>
+            <th>State Code</th>
+            <th>State Name</th>
+            <th>District Code</th>
+            <th>District Name</th>
+            <th>ULB Code</th>
+            <th>ULB Name</th>
+            <th>Group Code</th>
+            <th>Group Name</th>
+            <th>Loan Sanctioned Date</th>
+            <th>Loan Sanctioned Amount</th>
+            <th>CCL Sanction Date</th>
+            <th>Cash Credit Limit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.StateCode</td>
+                <td>@member.StateName</td>
+                <td>@member.DistrictCode</td>
+                <td>@member.DistrictName</td>
+                <td>@member.UlbCode</td>
+                <td>@member.UlbName</td>
+                <td>@member.GroupCode</td>
+                <td>@member.GroupName</td>
+                <td>@member.LoanSanctionedDate</td>
+                <td>@member.LoanSanctionedAmnt</td>
+                <td>@member.CclSanctionDate</td>
+                <td>@member.CashCreditLimit</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+<!-- Page specific script -->
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "paging": true,
+            "ordering": true,
+            "info": true,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+
+</script>

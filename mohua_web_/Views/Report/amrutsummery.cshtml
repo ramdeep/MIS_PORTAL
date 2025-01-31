@@ -1,0 +1,137 @@
+﻿@model IEnumerable<mohua_web_.Entities.Info>
+@{
+    ViewBag.Title = "AMRUT Report";
+    Layout = "~/Views/Shared/_Layout_adminlte.cshtml"; // Specify the layout file
+                                                       // Layout = "~/Views/Shared/_ReportLayout.cshtml"; // Specify the layout file
+}
+<body>
+    <head>
+        <meta charset="utf-8" />
+        <title>AMRUT</title>
+        <!-- Include any necessary CSS here -->
+        <!-- For example, Bootstrap for styling -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1> All States Amrut Summary Total Records: <span>@ViewBag.chkamrutsummery</span></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Report</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+
+
+        <div class="description row m-0 p-2 alert alert-success mb-3" style="">
+
+            <div class="col-sm-9 p-0">
+
+                <p>
+                    AMRUT stands for Atal Mission for Rejuvenation and Urban Transformation. It is a national initiative by the Government of India aimed at improving the quality of life in urban areas through better infrastructure and services. Launched in 2015, AMRUT focuses on urban renewal projects in 500 cities and towns to make them more livable, sustainable, and inclusive.
+                </p>
+            </div>
+
+            <div class="col-sm-3">
+				<img src="../img/amritsummry.jpeg" />
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="card" style="background:#D6E8FE">
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form>
+                <div class="card-body p-0">
+                    <!-- /.card-body -->
+                    <!-- Dropdowns for State, District, and ULB -->
+
+                    <div class="row m-0">
+
+
+                        <!-- Generate Report Button -->
+                        <div class="col-md-3">
+
+                            <button type="button" id="generateReportButton" class="rounded-pill btn btn-sm mt-4 btn-warning btn-rounded"> Generate Report</button>
+                            <br />
+                            <br />
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+
+
+
+        <!-- Report Section -->
+        <div id="reportSection">
+            <!-- Report will be displayed here -->
+        </div>
+
+    </div>
+    @section Scripts {
+        <!-- jQuery Library -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Optional: Include Bootstrap JS for enhanced UI components -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <!-- Custom JavaScript -->
+
+        <script>
+            $(document).ready(function () {
+
+                // Generate Report button click event
+                $('#generateReportButton').click(function () {
+
+
+                    // Make AJAX request to generate report
+                    $.ajax({
+                        url: '@Url.Action("GenerateReportamrutsummery", "Report")',
+                        type: 'Post',
+                        // Data can be adjusted as needed based on the requirements
+                        success: function (data) {
+                            // alert("success..");
+                            // logMessage("Report generated successfully.");
+                            // Display the report in the reportSection div
+                            $('#reportSection').html(data);
+                        },
+                        error: function (xhr, status, error) {
+                            logMessage("Error generating report: " + error);
+                            alert("An error occurred while generating the report.");
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"></script>
+
+
+    }
+</body>

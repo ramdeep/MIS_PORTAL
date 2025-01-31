@@ -1,0 +1,267 @@
+﻿@model IEnumerable<mohua_web_.Entities.Info>
+@{
+    ViewBag.Title = "SBM Report";
+    Layout = "~/Views/Shared/_Layout_adminlte.cshtml"; // Specify the layout file
+                                                       // Layout = "~/Views/Shared/_ReportLayout.cshtml"; // Specify the layout file
+}
+<body>
+    <head>
+        <meta charset="utf-8" />
+        <title>SBM Report</title>
+        <!-- Include any necessary CSS here -->
+        <!-- For example, Bootstrap for styling -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    @* <h1>@ViewBag.PageName</h1> *@
+                    <h1> All States SBM Total Records: <span>@ViewBag.chksbm</span></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Report</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+
+
+        <div class="description row m-0 p-2 alert alert-success mb-3" style="">
+
+            <div class="col-sm-9 p-0">
+
+                <p>
+                    SBM stands for the Swachh Bharat Mission, an initiative launched by the Government of India in 2014 with the goal of achieving a Clean India by promoting sanitation and hygiene practices across the country. It is divided into two phases: SBM (Gramin) for rural areas and SBM (Urban) for urban areas.
+                </p>
+            </div>
+
+            <div class="col-sm-3">
+                <img src="../img/swachbharat.jpg" />
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="card" style="background:#D6E8FE">
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form>
+                <div class="card-body p-0">
+                    <!-- /.card-body -->
+                    <!-- Dropdowns for State, District, and ULB -->
+
+                    <div class="row m-0">
+                        <div class="col-md-3 pr-0 form-group">
+                            <label for="stateSelect">State</label>
+                            <select id="stateSelect" name="StateCode" class="form-control rounded-pill pe-0">
+
+                                <option value="">Select a State</option>
+                                @foreach (var state in ViewBag.States as SelectList)
+                                {
+                                    <option value="@state.Value">@state.Text</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 pr-0 form-group">
+                            <label for="districtSelect">District</label>
+                            <select id="districtSelect" name="DistrictCode" class=" form-control rounded-pill pe-0">
+                                <option value="">Select a District</option>
+                                <!-- District options will be populated dynamically -->
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 pr-0 form-group">
+                            <label for="ulbSelect">ULB</label>
+                            <select id="ulbSelect" name="UlbCode" class="form-control rounded-pill pe-0">
+                                <option value="">Select a ULB</option>
+                                <!-- ULB options will be populated dynamically -->
+                            </select>
+                        </div>
+
+
+                        <!-- Generate Report Button -->
+                        <div class="col-md-3">
+
+                            <button type="button" id="generateReportButton" class="rounded-pill btn btn-sm mt-4 btn-warning btn-rounded"> Generate Report</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+
+
+
+        <!-- Report Section -->
+        <div id="reportSection">
+            <!-- Report will be displayed here -->
+        </div>
+
+    </div>
+
+
+
+    <!-- Scripts Section -->
+    @section Scripts {
+        <!-- jQuery Library -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Optional: Include Bootstrap JS for enhanced UI components -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <!-- Custom JavaScript -->
+        <script>
+            $(document).ready(function () {
+                // Populate year dropdown dynamically
+                var startYear = 2014;
+                var endYear = new Date().getFullYear();
+                var $yearSelect = $('#yearSelect');
+                for (var year = startYear; year <= endYear; year++) {
+                    $yearSelect.append('<option value="' + year + '">' + year + '</option>');
+                }
+                var StateCode = '';
+
+                // Function to log messages for debugging
+                function logMessage(message) {
+                    console.log(message);
+                }
+
+                // State select change event
+                $('#stateSelect').change(function () {
+                    StateCode = $(this).val();
+                    logMessage("State selected: " + StateCode);
+                    //alert(StateCode)
+
+                    if (StateCode) {
+                        // Fetch districts based on selected state
+                        $.ajax({
+                            url: '@Url.Action("GetDistricts", "Report")',
+                            type: 'GET',
+                            data: { StateCode: StateCode },
+                            dataType: 'json', // Ensure JSON response
+                            success: function (data) {
+                                logMessage("Districts fetched successfully.");
+
+                                // Clear and populate District dropdown
+                                $('#districtSelect').empty().append('<option value="">Select District</option>');
+                                $.each(data, function (i, districts) {
+                                    $('#districtSelect').append('<option value="' + districts.districtCode + '">' + districts.districtName + '</option>');
+                                });
+
+                                // Clear the ULB dropdown if state changes
+                                $('#ulbSelect').empty().append('<option value="">Select ULB</option>');
+                            },
+                            error: function (xhr, status, error) {
+                                logMessage("Error fetching districts: " + error);
+                                alert("An error occurred while fetching districts.");
+                            }
+                        });
+                    } else {
+                        // Clear District and ULB dropdowns if no State is selected
+                        $('#districtSelect').empty().append('<option value="">Select District</option>');
+                        $('#ulbSelect').empty().append('<option value="">Select ULB</option>');
+                    }
+                });
+
+                // District select change event
+                $('#districtSelect').change(function () {
+                    var DistrictCode = $(this).val();
+                    logMessage("District selected: " + DistrictCode);
+
+                    if (DistrictCode && StateCode) {
+                        // Fetch ULBs based on selected state and district
+                        $.ajax({
+                            url: '@Url.Action("GetUlb", "Report")',
+                            type: 'GET',
+                            data: { StateCode: StateCode, DistrictCode: DistrictCode },
+                            dataType: 'json', // Ensure JSON response
+                            success: function (data) {
+                                logMessage("ULBs fetched successfully.");
+                                // Clear and populate ULB dropdown
+                                $('#ulbSelect').empty().append('<option value="">Select ULB</option>');
+                                $.each(data, function (i, ulb) {
+                                    $('#ulbSelect').append('<option value="' + ulb.ulbCode + '">' + ulb.ulbName + '</option>');
+                                });
+                            },
+                            error: function (xhr, status, error) {
+                                logMessage("Error fetching ULBs: " + error);
+                                alert("An error occurred while fetching ULBs.");
+                            }
+                        });
+                    } else {
+                        // Clear ULB dropdown if no District is selected
+                        $('#ulbSelect').empty().append('<option value="">Select a Ulb</option>');
+                    }
+                });
+
+
+
+
+                // Generate Report button click event
+                $('#generateReportButton').click(function () {
+                    var selectedState = $('#stateSelect').val();
+                    var selectedDistrict = $('#districtSelect').val();
+                    var selectedUlb = $('#ulbSelect').val();
+                    var selectedYear = $('#yearSelect').val();
+
+                    logMessage("Generating report for State: " + selectedState + ", District: " + selectedDistrict + ", Ulb: " + selectedUlb);
+
+                    // Perform validation if needed
+                    if (!selectedState) {
+                        alert("Please select a State.");
+                        return;
+                    }
+
+                    // Make AJAX request to generate report
+                    $.ajax({
+                        url: '@Url.Action("GenerateReportsbm", "Report")',
+                        type: 'Post',
+                        data: {
+                            StateCode: selectedState,
+                            DistrictCode: selectedDistrict,
+                            ulbCode: selectedUlb,
+                            Year: selectedYear
+                        },
+                        success: function (data) {
+                            logMessage("Report generated successfully.");
+                            // Display the report in the reportSection div
+                            $('#reportSection').html(data);
+                        },
+                        error: function (xhr, status, error) {
+                            logMessage("Error generating report: " + error);
+                            alert("An error occurred while generating the report.");
+                        }
+                    });
+                });
+            });
+            //
+
+            //
+        </script>
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.colVis.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.5/vfs_fonts.js"></script>
+
+
+    }
+</body>

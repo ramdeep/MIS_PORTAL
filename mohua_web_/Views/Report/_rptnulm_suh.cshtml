@@ -1,0 +1,54 @@
+﻿ @model IEnumerable<mohua_web_.Entities.TblNulmApiSuh>
+
+
+
+<table id="example1" class="table align-items-center mb-0" style="overflow-x: auto; display: block; white-space: nowrap;">
+    <thead>
+        <tr>
+            <th>State Name</th>
+            <th>District Name</th>
+            <th>ULB Name</th>
+            <th>Shelter Name</th>
+            <th>Capacity</th>
+            <th>Shelter Type</th>
+            <th>Shelter Subtype</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var shelter in Model)
+        {
+            <tr>
+                <td>@shelter.StateName</td>
+                <td>@shelter.DistrictName</td>
+                <td>@shelter.UlbName</td>
+                <td>@shelter.ShelterName</td>
+                <td>@shelter.Capacity</td>
+                <td>@shelter.Sheltertype</td>
+                <td>@shelter.Sheltersubtype</td>
+                <td>@shelter.Address</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+<!-- Page specific script -->
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "paging": true,
+            "ordering": true,
+            "info": true,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+
+</script>

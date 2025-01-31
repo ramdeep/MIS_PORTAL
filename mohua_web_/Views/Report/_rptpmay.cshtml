@@ -1,0 +1,102 @@
+﻿ @model IEnumerable<mohua_web_.Entities.TblPmay>
+
+
+
+<table id="example1" class="table align-items-center mb-0" style="overflow-x: auto; display: block; white-space: nowrap;">
+    <thead>
+        <tr>
+            <th>State Name</th>
+            <th>City Name</th>
+            <th>District Name</th>
+            <th>Parliament Constituency Name</th>
+            <th>Project Cost</th>
+            <th>Central Assistance Involved</th>
+            <th>Central Assistance Released</th>
+            <th>UC Received</th>
+            <th>Number of Houses</th>
+            <th>Houses Under Progress</th>
+            <th>Houses Completed</th>
+            <th>Houses Allotted</th>
+            <th>Houses Occupied</th>
+            <th>Houses Unoccupied</th>
+            <th>Houses Yet to be Grounded</th>
+            <th>Component</th>
+            <th>Approved Date</th>
+            <th>Name of Shifting MP</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.Statename</td>
+                <td>@member.Cityname</td>
+                <td>@member.Districtname</td>
+                <td>@member.Parlconstname</td>
+                <td>@member.Projectcost</td>
+                <td>@member.Centralassistanceinvolved</td>
+                <td>@member.Centralassistancereleased</td>
+                <td>@member.Ucreceived</td>
+                <td>@member.Noofhouse</td>
+                <td>@member.Housesunderprogress</td>
+                <td>@member.Housescompleted</td>
+                <td>@member.Housesallotted</td>
+                <td>@member.Housesoccupied</td>
+                <td>@member.Housesunoccupied</td>
+                <td>@member.Housesyettogrounded</td>
+                <td>@member.Component</td>
+                <td>@member.Approveddate</td>
+                <td>@member.Nameshittingmp</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<!-- Page specific script -->
+@* <script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "paging": true,
+            "ordering": true,
+            "info": true,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+
+</script> *@
+<script>
+    $(document).ready(function () {
+        var table = $('#example1').DataTable({
+            //Toggle the below paging to false - to remove pagination
+            paging: true,
+
+            //Nishant Code Start - Code Add for Exporting to PDF
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'PMAY REPORT',
+                    text: 'Export to Excel'
+                }
+            ]
+            //Code End - Code Added for File Export to PDF
+
+        });
+
+        $('a.toggle-vis').on('click', function (e) {
+            e.preventDefault();
+
+            // Get the column API object
+            var column = table.column($(this).attr('data-column'));
+
+            // Toggle the visibility
+            column.visible(!column.visible());
+        });
+    });
+</script>

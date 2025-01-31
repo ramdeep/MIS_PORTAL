@@ -1,0 +1,479 @@
+﻿@{
+    var UserName = "Admin";//Context.Session.GetString("UserName");
+    var Role = "1";//Context.Session.GetString("UserRole");// "SuperAdmin";
+                   // if (tedata == null)
+                   // {
+                   //     Context.Response.Redirect("/Login/Login");
+                   //      //("Login","Login");
+                   // }
+                   // LoginModel userdetails = JsonConvert.DeserializeObject<LoginModel>(tedata.ToString());
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MOHUA | Dashboard</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/admincss/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/admincss/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/admincss/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/admincss/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/admincss/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/admincss/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/admincss/plugins/daterangepicker/daterangepicker.css">
+	<!-- summernote -->
+	
+    <link rel="stylesheet" href="~/admincss/plugins/summernote/summernote-bs4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/admincss/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/admincss/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- DataTables -->
+@*     <link rel="stylesheet" href="~/admincss/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admincss/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/admincss/plugins/datatables-buttons/css/buttons.bootstrap4.min.css"> *@
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/admincss/plugins/toastr/toastr.min.css">
+
+
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <style>
+
+        .text-warning {
+            color: #ff9c07 !important 
+        }
+    </style>
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="~/admincss/dist/img/AdminLTELogo.jpg" alt="DSU" height="60" width="60">
+        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                 <li class="nav-item d-none d-sm-inline-block"> 
+                    <a href="Home/Index" class="text-white nav-link">Home</a>
+                 </li> 
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+    
+               
+                <li class="nav-item">
+                    <a class="nav-link text-white" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt text-white"></i>
+                    </a>
+                </li>
+                <li class="nav-item d-flex align-items-center text-warning">
+                    <a href="@Url.Action("Login","Report")" class="nav-link text-body font-weight-bold">
+						@* <i class="fa fa-user me-sm-1 text-white"></i> *@
+                        <img src="~/admincss/images/incuser.png" width="25px" />
+                        <span class="d-sm-inline d-none text-warning">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+                <img src="~/admincss/dist/img/AdminLTELogo.jpg" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text text-white">Ministry of Housing and<br /> Urban Affairs <br /><small class="text-warning">Government of India</small></span>
+
+            </a>
+
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2 sidebar-menu-left" >
+                    @if (Role == "SuperAdmin")
+                    {
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                                 with font-awesome or any other icon font library -->
+                            <li class="nav-item menu-open">
+                                <a href="#" class="nav-link active">
+                                    <i class="nav-icon fas fa-home-alt"></i>
+                                    <p>
+                                        Home
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-pie text-primary"></i>
+                                    <p>
+                                        Reports
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "Report")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p> PMAY-U</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("AdvanceReport", "Report")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p> PMSVANIDHI</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ConsolidatedReport", "Report")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>AMRUT</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ProductList", "Master")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>SMART CITY MISSION (SCM)</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("TodayItemList", "Report")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p> SWACHH BHARAT MISSION (SBM)</p>
+                                        </a>
+                                    </li>
+
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ConsumerList", "Master")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>NULM </p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <!--End Report menu-->
+
+                        </ul>
+                    }
+                    //  else if(Role=="User")
+                    else
+                    {
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-item menu-open">
+                                <a href="@Url.Action("dashboard", "Report")" class="nav-link active">
+                                    <i class="nav-icon fas fa-chart-pie"></i>
+                                    <p>
+                                        Integrated Dashoboard
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-pie "></i>
+                                    <p>
+                                        Missions Wise Dashboard
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("pmay", "Dashboard")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p> PMAY-U</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("pmsvanidhi", "Dashboard")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p> PMSVANIDHI</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("amrut", "Dashboard")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>AMRUT</p>
+                                        </a>
+                                    </li>
+                                    <!--end-->
+                                   
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("scm", "Dashboard")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>SMART CITY MISSION (SCM)</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("sbm", "Dashboard")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p> SWACHH BHARAT MISSION (SBM)</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("nulm", "Dashboard")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>NULM</p>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-pie"></i>
+                                    <p>
+                                        Reports
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+
+
+
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "Report")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p> PMAY-U</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("pmsvanidhi", "Report")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p> PMSVANIDHI</p>
+                                        </a>
+                                    </li>
+                                 
+                                    <!--strt-->
+                                    <li class="nav-item has-treeview">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>
+                                                AMRUT
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("amrutsummery", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-success"></i>
+                                                    <p>SUMMERY</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("amrutdetail", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-info"></i>
+                                                    <p>DETAILS</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item has-treeview">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>
+                                                NULM
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("nulm_sepgroup", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-success"></i>
+                                                    <p>SEPGROUP</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("nulm_sepbeneficiary", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-info"></i>
+                                                    <p>SEPBENEFICIARY</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("nulm_smidshg", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-info"></i>
+                                                    <p>SMIDSHG</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("nulm_smidalf", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-info"></i>
+                                                    <p>SMIDALF</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("nulm_suh", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-info"></i>
+                                                    <p>SUH</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("nulm_susvcov", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-info"></i>
+                                                    <p>SUSVCOV</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("scm", "Report")" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>SMART CITY MISSION (SCM)</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item has-treeview">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-dot-circle nav-icon text-warning"></i>
+                                            <p>
+                                                SBM
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("sbm", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-success"></i>
+                                                    <p>DETAILS</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("sbm_odf", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-info"></i>
+                                                    <p>ODF</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("sbm_gfc", "Report")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon text-info"></i>
+                                                    <p>GFC</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                    }
+                </nav>
+                <!-- /.sidebar-menu -->
+
+				<img src="../admincss/images/headerbottom.png" width="100%" class="p-2" />
+
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @RenderBody()
+
+
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2024-2025 <a class="text-warning" href="http://35.154.201.50/Report/Login">MOHUA::DSU</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/admincss/dist/vendor/jquery-3.4.1.js"></script>
+    <script src="~/admincss/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/admincss/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="~/admincss/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/admincss/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/admincss/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/admincss/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/admincss/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/admincss/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/admincss/plugins/moment/moment.min.js"></script>
+    <script src="~/admincss/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/admincss/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/admincss/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/admincss/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/admincss/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="~/admincss/dist/js/demo.js"></script>*@
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/admincss/dist/js/pages/dashboard.js"></script>
+    <!-- Select2 -->
+    <script src="~/admincss/plugins/select2/js/select2.full.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <!-- Toastr -->
+    <script src="~/admincss/plugins/toastr/toastr.min.js"></script>
+    <script>
+        //Initialize Select2 Elements
+        $(".ddlselect").select2();
+    </script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+        @*  $("#PdfDataTable").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["pdf", "print"]
+                }).buttons().container().appendTo('#PdfDataTable_wrapper .col-md-6:eq(0)'); *@
+                        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

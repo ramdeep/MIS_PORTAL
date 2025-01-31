@@ -1,0 +1,147 @@
+﻿@model mohua_web_.Entities.Info
+
+@{
+    ViewBag.Title = "Dashboard";
+    ViewData["Title"] = "Dashboard";
+    ViewData["Head"] = "Test";
+    Layout = "~/Views/Shared/_Layout_adminlte.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <style>
+        /* General body settings */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        /* Ensure sections take full height */
+        section.content {
+            min-height: 100vh;
+            padding: 20px 0;
+            background-color: #ffffff;
+            overflow-x: hidden; /* Prevent horizontal overflow */
+        }
+
+        /* Header section styling */
+        .content-header {
+            padding: 15px 0;
+            background-color: #f1f1f1;
+            margin-bottom: 20px;
+        }
+
+            .content-header h1 {
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+        /* Breadcrumb styles */
+        .breadcrumb {
+            background: none;
+            margin-bottom: 0;
+        }
+
+        /* Tableau visualization styling */
+        .tableauPlaceholder {
+            width: 100%;
+            max-width: 100%; /* Ensure the tableau visualization does not overflow */
+            height: 90vh; /* Adjust height as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .tableauViz {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Ensure the page content stays within bounds */
+        .container-fluid {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@ViewBag.PageName</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Tableau Embedding -->
+            <div class="tableauPlaceholder" id="viz1732527738044" style="position: relative">
+                <noscript>
+                    <a href="#">
+                        <img alt="Final " src="https://public.tableau.com/static/images/PM/PMAY_17292465384010/Final/1_rss.png" style="border: none" />
+                    </a>
+                </noscript>
+                <object class="tableauViz" style="display:none;">
+                    <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                    <param name="embed_code_version" value="3" />
+                    <param name="site_root" value="" />
+                    <param name="name" value="PMAY_17292465384010/Final" />
+                    <param name="tabs" value="no" />
+                    <param name="toolbar" value="yes" />
+                    <param name="static_image" value="https://public.tableau.com/static/images/PM/PMAY_17292465384010/Final/1.png" />
+                    <param name="animate_transition" value="yes" />
+                    <param name="display_static_image" value="yes" />
+                    <param name="display_spinner" value="yes" />
+                    <param name="display_overlay" value="yes" />
+                    <param name="display_count" value="yes" />
+                    <param name="language" value="en-US" />
+                </object>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var divElement = document.getElementById('viz1732527738044');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            if (divElement.offsetWidth > 800) {
+                vizElement.style.width = '1360px';
+                vizElement.style.height = '1010px';
+            } else if (divElement.offsetWidth > 500) {
+                vizElement.style.width = '1360px';
+                vizElement.style.height = '1010px';
+            } else {
+                vizElement.style.width = '100%';
+                vizElement.style.height = '3077px';
+            }
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿ @model IEnumerable<mohua_web_.Entities.TblScm>
+
+
+
+@* <table class="table" id="example1" table-responsive"> paging aur export*@
+@* <table id="example1" class="table align-items-center mb-0"> *@
+<table id="example1" class="table table-bordered table-striped Items table-responsive" style="overflow-x: auto; display: block; white-space: nowrap;">
+    <thead>
+        <tr>
+            <th>State Name</th>
+            <th>City Name</th>
+            <th>Object ID</th>
+            <th>P_ID</th>
+            <th>Project Cost</th>
+            <th>Project Name</th>
+            <th>Value Total</th>
+            <th>Convergence With Other Missions</th>
+            <th>Actual Date of Project Start</th>
+            <th>Project End Date</th>
+            <th>Milestone</th>
+            <th>Category</th>
+            <th>SCM</th>
+            <th>Total WO</th>
+            <th>PPP</th>
+            <th>Debt</th>
+            <th>Bonds</th>
+            <th>Loans</th>
+            <th>Own Resources</th>
+            <th>Other Sources</th>
+            <th>Total</th>
+            <th>Utilization</th>
+            <th>Actual Date of Project Completion</th>
+            <th>Internal Category</th>
+            <th>Physical Progress</th>
+            <th>Financial Progress</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.StateName</td>
+                <td>@member.CityName</td>
+                <td>@member.Objectid</td>
+                <td>@member.PId</td>
+                <td>@member.PrjCost</td>
+                <td>@member.ProjectName</td>
+                <td>@member.ValueTotal</td>
+                <td>@member.ConvergenceWithOtherMissions</td>
+                <td>@member.ActualDateOfProjectStart</td>
+                <td>@member.ProjectEndDate</td>
+@*                 <td>@DateTimeOffset.FromUnixTimeMilliseconds(long.Parse(member.ActualDateOfProjectStart)).DateTime.ToString("yyyy-MM-dd")</td>
+                <td>@DateTimeOffset.FromUnixTimeMilliseconds(long.Parse(member.ProjectEndDate)).DateTime.ToString("yyyy-MM-dd")</td> *@
+                <td>@member.Milestone</td>
+                <td>@member.Category</td>
+                <td>@member.Scm</td>
+                <td>@member.TotalWo</td>
+                <td>@member.Ppp</td>
+                <td>@member.Debt</td>
+                <td>@member.Bonds</td>
+                <td>@member.Loans</td>
+                <td>@member.OwnResources</td>
+                <td>@member.OtherSources</td>
+                <td>@member.Total</td>
+                <td>@member.Utilization</td>
+                <td>@member.ActualDateOfProjectCompleti</td>
+@*                 <td>@DateTimeOffset.FromUnixTimeMilliseconds(long.Parse(member.ActualDateOfProjectCompleti)).DateTime.ToString("yyyy-MM-dd")</td> *@
+                <td>@member.InternalCategory</td>
+                <td>@member.PhysicalProgress</td>
+                <td>@member.FinancialProgress</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+    $(document).ready(function () {
+        var table = $('#example1').DataTable({
+            //Toggle the below paging to false - to remove pagination
+            paging: true,
+
+            //Nishant Code Start - Code Add for Exporting to PDF
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'SCM REPORT',
+                    text: 'Export to Excel'
+                }
+            ]
+            //Code End - Code Added for File Export to PDF
+
+        });
+
+        $('a.toggle-vis').on('click', function (e) {
+            e.preventDefault();
+
+            // Get the column API object
+            var column = table.column($(this).attr('data-column'));
+
+            // Toggle the visibility
+            column.visible(!column.visible());
+        });
+    });
+</script>
+

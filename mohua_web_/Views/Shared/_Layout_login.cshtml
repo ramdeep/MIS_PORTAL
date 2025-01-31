@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - mohua_web_</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel_1/assets/owl.carousel.min.css" rel="stylesheet">
+
+
+    <!-- Template Stylesheet -->
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Carousel Start -->
+    <div class="carousel" id="home">
+        <div class="container-fluid">
+            <div class="owl-carousel owl-loaded owl-drag">
+                <div class="carousel-item">
+                    <div class="carousel-img">
+                        <img src="img/sbm_bg.png" alt="Image" width="1217" height="713">
+                    </div>
+                    <div class="carousel-text">
+                        <h1></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+    <header>
+        <div class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+                <i class="fs-2 text-primary ms-2">
+                    <img class="MohualogoImage" src="~/img/logo.png" style="width: 50px; height: 70px;" />
+                </i>
+                <div style="margin-left: 10px; flex-direction: column;">
+                    <span style="font-size: 18px; font-weight: bold; color: #FFFFFF;">Ministry of Housing and Urban Affairs</span>
+                    <br>
+                    <span style="font-size: 14px; color: #FFFFFF;">Government of India</span>
+                </div>
+                <a href="index.html" class="navbar-brand"></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="/Home" class="nav-item nav-link">Home</a>
+                        <a href="/Home#about" class="nav-item nav-link">About</a>
+                        <a href="/Home#progress" class="nav-item nav-link">Overview</a>
+                        <a href="/Home#blog" class="nav-item nav-link">Blog</a>
+                        <a href="/Home#FAQ" class="nav-item nav-link">FAQ</a>
+                        <a href="/Home/Reports" class="nav-item nav-link">Reports</a>
+                        <a href="http://65.0.90.177/views/INTAWS_0108/TESTP/5873567a-f486-49d4-8c67-ec25c9b48cc9/1d383e2e-38fc-4b4c-926d-20e83c4aa7ef" class="nav-item nav-link" onclick="showDashboard()">Dashboard</a>
+                        <a href="/Home/Login" class="nav-item nav-link active nav-contact bg-primary text-white px-2 ms-lg-2" style="margin-right: 50px;">
+                            Login
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Nav Bar End -->
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+        <!-- Footer Start -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-contact">
+                            <h2>Get in Touch</h2>
+                            <p>
+                                <i class="fa fa-map-marker-alt"></i>Ministry of Housing And Urban Affairs, Government of India, New Delhi
+                            </p>
+                            <p><i class="fa fa-envelope"></i>info@example.com</p>
+                            <div class="footer-social">
+                                <a class="btn btn-custom" href="https://x.com/MoHUA_India"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-custom" href="https://www.facebook.com/mohua.india/"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-custom" href="https://www.instagram.com/MoHUA_India/"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-custom" href="https://in.linkedin.com/company/mohua"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-link">
+                            <h2>Useful Links</h2>
+                            <a href="">Terms of use</a>
+                            <a href="">Privacy policy</a>
+                            <a href="">Cookies</a>
+                            <a href="">Help</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-newsletter">
+                            <h2>Newsletter</h2>
+                            <form>
+                                <input class="form-control" placeholder="Email goes here">
+                                <button class="btn btn-custom">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container copyright">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Designed and Managed By <a> Ministry of Housing and Urban Affairs</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/owlcarousel_1/owl.carousel.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="~/js/main.js"></script>
+
+    <!-- Tableau Embedding -->
+    <script type='module'
+            src='http://65.0.90.177/javascripts/api/tableau.embedding.3.latest.min.js'>
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

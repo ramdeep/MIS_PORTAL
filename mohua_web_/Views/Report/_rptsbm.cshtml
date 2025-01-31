@@ -1,0 +1,79 @@
+﻿@model IEnumerable<mohua_web_.Entities.TblApiSbm>
+
+
+
+@* <table class="table" id="example1" table-responsive"> paging aur export*@
+<table id="example1" class="table table-bordered table-striped Items table-responsive" style="overflow-x: auto; display: block; white-space: nowrap;">
+    <thead>
+        <tr>
+            <th>State Name</th>
+            <th>District Name</th>
+            <th>ULB Name</th>
+            <th>Total Wards</th>
+            <th>No. of Wards 100% D2D</th>
+            <th>No. of Wards 100% SS</th>
+            <th>Generation</th>
+            <th>Processed</th>
+            <th>Month</th>
+            <th>Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.Statename</td>
+                <td>@member.Districtname</td>
+                <td>@member.Ulbname</td>
+                <td>@member.Totalwards</td>
+                <td>@member.Noofwards100perd2d</td>
+                <td>@member.Noofwards100perss</td>
+                <td>@member.Generation</td>
+                <td>@member.Processed</td>
+                <td>@member.Month</td>
+                <td>@member.Year</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+<!-- Page specific script -->
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#example1').DataTable({
+            //Toggle the below paging to false - to remove pagination
+            paging: true,
+
+        //Nishant Code Start - Code Add for Exporting to PDF
+        dom: 'Bfrtip',
+        buttons: [
+        {
+            extend: 'excelHtml5',
+        title: 'AMRUT SUMMERY REPORT',
+        text: 'Export to Excel'
+                    }
+        ]
+                //Code End - Code Added for File Export to PDF
+
+            });
+
+        $('a.toggle-vis').on('click', function (e) {
+            e.preventDefault();
+
+        // Get the column API object
+        var column = table.column($(this).attr('data-column'));
+
+        // Toggle the visibility
+        column.visible(!column.visible());
+            });
+        });
+</script>
+
+

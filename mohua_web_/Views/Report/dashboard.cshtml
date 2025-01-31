@@ -1,0 +1,85 @@
+﻿@model mohua_web_.Entities.Info
+
+@{
+    ViewBag.Title = "Dashboard";
+    ViewData["Title"] = "Dashboard";
+    ViewData["Head"] = "Test";
+    Layout = "~/Views/Shared/_Layout_adminlte.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css">
+    <link href="~/css/site.css" rel="stylesheet" />
+
+   
+</head>
+<body>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    @* <h1>@ViewBag.PageName</h1>  *@
+                    <h1>
+                        Integrated Dashoboard
+                    </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="#">
+
+                               Home
+
+                            </a> |  Integrated Dashoboard
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="tableauPlaceholder" id="viz1729158963671">
+                <noscript>
+                    <a href="#">
+                        <img alt="TEST (P)" src="https://public.tableau.com/static/images/IN/INTAWS3OCT1/TESTP/1_rss.png" style="border: none;" />
+                    </a>
+                </noscript>
+                <object class="tableauViz">
+                    <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
+                    <param name="embed_code_version" value="3" />
+                    <param name="site_root" value="" />
+                    <param name="name" value="INTAWS3OCT1&#47;TESTP" />
+                    <param name="tabs" value="no" />
+                    <param name="toolbar" value="yes" />
+                    <param name="static_image" value="https://public.tableau.com/static/images/IN/INTAWS3OCT1/TESTP/1.png" />
+                    <param name="animate_transition" value="yes" />
+                    <param name="display_static_image" value="yes" />
+                    <param name="display_spinner" value="yes" />
+                    <param name="display_overlay" value="yes" />
+                    <param name="display_count" value="yes" />
+                    <param name="language" value="en-US" />
+                    <param name="filter" value="publish=yes" />
+                </object>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            document.getElementsByTagName('head')[0].appendChild(scriptElement);
+        });
+    </script>
+</body>
+</html>

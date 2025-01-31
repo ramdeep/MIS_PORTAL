@@ -1,0 +1,69 @@
+﻿@model IEnumerable<mohua_web_.Entities.TblApiSbmGfc>
+
+
+
+@* <table class="table" id="example1" table-responsive"> paging aur export*@
+<table id="example1" class="table table-bordered table-striped Items table-responsive" style="overflow-x: auto; display: block; white-space: nowrap;">
+    <thead>
+        <tr>
+            <th>State</th>
+            <th>District</th>
+            <th>ULB Name</th>
+            <th>GFC Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.State</td>
+                <td>@member.District</td>
+                <td>@member.Ulbname</td>
+                <td>@member.Gfcrating</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<!-- Page specific script -->
+
+<script>
+    $(document).ready(function () {
+        var table = $('#example1').DataTable({
+            //Toggle the below paging to false - to remove pagination
+            paging: true,
+
+            //Nishant Code Start - Code Add for Exporting to PDF
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: 'SBM ODF REPORT',
+                    text: 'Export to Excel'
+                }
+            ]
+            //Code End - Code Added for File Export to PDF
+
+        });
+
+        $('a.toggle-vis').on('click', function (e) {
+            e.preventDefault();
+
+            // Get the column API object
+            var column = table.column($(this).attr('data-column'));
+
+            // Toggle the visibility
+            column.visible(!column.visible());
+        });
+    });
+</script>
+
+

@@ -1,0 +1,20 @@
+
+{
+    "region" : "ap-south-1",
+    "configuration" : "Debug",
+    "framework"     : "net8.0",
+    "self-contained" : true,
+    "application"    : "mohuaweb",
+    "environment"    : "mohuaweb-dev",
+    "enable-xray"    : false,
+    "enhanced-health-type" : "basic",
+    "additional-options"   : "",
+    "proxy-server"         : "nginx",
+    "solution-stack"       : "64bit Amazon Linux 2 v2.8.5 running .NET Core",
+    "environment-type"     : "SingleInstance",
+    "cname"                : "mohuaweb-test",
+    "instance-type"        : "t3a.medium",
+    "key-pair"             : "Dotnet",
+    "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
+    "service-role"         : "aws-elasticbeanstalk-service-role"
+}
